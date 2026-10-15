@@ -30,6 +30,15 @@ tools/reference.sh /tmp/bestpred-ref
 python tools/compare.py --driver /tmp/bestpred-ref/driver --n 300
 ```
 
+## Tested against daily meter weights
+
+600 synthetic lactations shaped like a California Holstein herd. 305-day yield projected from test days drawn
+monthly from daily weights, compared with the true daily total.
+
+![Mean absolute error of the 305-day projection by tests up to 60, 120 and 200 days in milk and all tests: best prediction 7.9, 5.4, 3.0, 1.8%; herd-curve ratio 8.5, 6.0, 3.6, 2.0%; test intervals plus herd curve 8.3, 5.5, 3.0, 1.8%](validation/results/error_by_stage.png)
+
+Method, data, table and scripts: [validation/](validation/).
+
 ## Install
 
 ```bash

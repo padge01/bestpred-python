@@ -16,6 +16,7 @@ classifiers = [
 
 [project.optional-dependencies]
 test = ["pytest"]
+validation = ["pandas"]
 
 [project.scripts]
 bestpred = "bestpred.cli:main"

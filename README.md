@@ -1,13 +1,13 @@
 # bestpred
 
-USDA's **best prediction** of dairy lactation yields, in Python. It takes a cow's test days and returns 305-day,
-365-day and to-date milk, fat, protein and SCS (actual and mature equivalent), persistency, reliabilities, the data
-collection rating, and the cow's daily lactation curve.
+Python translation of the USDA best prediction of lactation yields (BESTPRED).
+
+Takes a cow's test days and returns 305-day, 365-day and to-date milk, fat, protein and SCS (actual and mature
+equivalent), persistency, reliabilities, the data collection rating, and the cow's daily lactation curve.
 
 Best prediction is the method USDA has used for official lactation records since 1998 (VanRaden, 1997; Cole et al.,
 2009). The original is USDA-AGIL's public-domain Fortran and C,
-[BESTPRED 2.0rc7](https://github.com/wintermind/bestpred). This is a line-by-line port of it, and it gives the same
-numbers.
+[BESTPRED 2.0rc7](https://github.com/wintermind/bestpred). This port gives the same numbers.
 
 ## How it was checked
 

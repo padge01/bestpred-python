@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, and cite the original BESTPRED (Cole and VanRaden, 2008)."
+type: software
+title: "bestpred: USDA best prediction of dairy lactation yields, ported to Python"
+abstract: >-
+  Python translation of USDA-AGIL's BESTPRED 2.0rc7. Takes a cow's test days and returns 305-day, 365-day and
+  to-date milk, fat, protein and SCS (actual and mature equivalent), persistency, reliabilities and the daily
+  lactation curve. Checked against the original Fortran to 1e-9 relative on every output.
+authors:
+  - family-names: Lucey
+    given-names: Pádraig
+    orcid: "https://orcid.org/0000-0003-3885-2439"
+version: 0.1.0
+license: Apache-2.0
+repository-code: "https://github.com/padge01/bestpred-python"
+keywords:
+  - dairy
+  - lactation
+  - best prediction
+  - DHI
+  - animal science
+references:
+  - type: manual
+    title: "A Manual for Use of BESTPRED: A Program for Estimation of Lactation Yield and Persistency Using Best Prediction"
+    authors:
+      - family-names: Cole
+        given-names: John B.
+      - family-names: VanRaden
+        given-names: Paul M.
+    year: 2008
+    institution:
+      name: "USDA Agricultural Research Service, Animal Genomics and Improvement Laboratory"
+  - type: software
+    title: "BESTPRED 2.0rc7"
+    url: "https://github.com/wintermind/bestpred"

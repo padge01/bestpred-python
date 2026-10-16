@@ -1,5 +1,7 @@
 # bestpred
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23425506.svg)](https://doi.org/10.5281/zenodo.23425506)
+
 Python translation of the USDA best prediction of lactation yields (BESTPRED).
 
 Takes a cow's test days and returns 305-day, 365-day and to-date milk, fat, protein and SCS (actual and mature

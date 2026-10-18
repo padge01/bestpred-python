@@ -1,6 +1,6 @@
 [project]
 name = "bestpred"
-version = "0.2.0"
+version = "0.2.1"
 description = "USDA's best prediction of dairy lactation yields and persistency (BESTPRED 2.0rc7), ported to Python and checked against the original."
 readme = "README.md"
 license = "Apache-2.0"

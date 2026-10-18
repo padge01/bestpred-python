@@ -1,6 +1,6 @@
 {
   "name": "bestpred",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "USDA's best prediction of dairy lactation yields (BESTPRED): 305-day and mature-equivalent milk, fat and protein, reliability and persistency from a cow's or a herd's test days.",
   "author": {
     "name": "Pádraig Lucey"

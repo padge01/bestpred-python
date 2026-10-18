@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.padge01/bestpred",
+  "title": "BESTPRED lactation records",
+  "description": "USDA's best prediction of dairy lactation yields: 305-day and mature-equivalent milk, fat and protein, reliability and persistency from test days.",
+  "version": "0.2.1",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "bestpred-mcp",
+      "version": "0.2.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

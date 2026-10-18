@@ -64,3 +64,15 @@ Claude plugin and in the dairy kit.
 3. Host it (his yes: Google Cloud billing and budget, Cloudflare DNS).
 4. Submit to Claude's directory and OpenAI's (his yes; his developer identity).
 5. The talk: a slide beside the Ration Lab with the install line, and a replayed real run on a herd's test days.
+
+## Status, 18 Oct
+
+- Done and pushed: the server (four tools), hosted mode with its pages and a Dockerfile, the Claude plugin and store,
+  the Codex plugin and store, the skill, install lines, llms.txt, server.json for the official MCP Registry, and the
+  release workflow. Tests: the library's 21 and the server's 10.
+- Release v0.2.0 is on GitHub, but its PyPI upload failed (no trusted publisher yet). The first PyPI release is 0.2.1,
+  which adds the registry marker, hosted mode and the Codex plugin.
+- His steps: (1) PyPI pending publishers for `bestpred` and `bestpred-mcp` (padge01 / bestpred-python / release.yml /
+  pypi); (2) after 0.2.1 is on PyPI, submit the plugin at claude.ai/directory/manage (Plugin bundle,
+  padge01/bestpred-python, path plugins/bestpred); (3) the MCP Registry: `mcp-publisher login github` then
+  `mcp-publisher publish` from the repo root (his GitHub sign-in); (4) hosting, with the Ration Lab's.

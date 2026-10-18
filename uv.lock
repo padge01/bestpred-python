@@ -54,7 +54,7 @@ wheels = [
 
 [[package]]
 name = "bestpred"
-version = "0.2.0"
+version = "0.2.1"
 source = { editable = "." }
 dependencies = [
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
@@ -81,7 +81,7 @@ provides-extras = ["test", "validation"]
 
 [[package]]
 name = "bestpred-mcp"
-version = "0.2.0"
+version = "0.2.1"
 source = { editable = "mcp" }
 dependencies = [
     { name = "bestpred" },

@@ -1,5 +1,7 @@
 # bestpred-mcp
 
+<!-- mcp-name: io.github.padge01/bestpred -->
+
 USDA's best prediction of dairy lactation yields ([bestpred](https://github.com/padge01/bestpred-python), the
 Python port of BESTPRED 2.0rc7) as tools any AI agent can call. An agent can't work out a lactation record in its head;
 with this it runs the method USDA uses for official records, and reports the numbers it gets back.

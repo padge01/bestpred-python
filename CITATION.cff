@@ -10,7 +10,7 @@ authors:
   - family-names: Lucey
     given-names: Pádraig
     orcid: "https://orcid.org/0000-0003-3885-2439"
-version: 0.2.0
+version: 0.2.1
 doi: 10.5281/zenodo.23425506
 date-released: 2026-10-18
 license: Apache-2.0

@@ -10,4 +10,4 @@ from .format4 import Format4, results_line, run_format4
 
 __all__ = ['Format4', 'Result', 'Settings', 'TestDay', 'adjscs', 'age_factors', 'aiplage', 'bestpred', 'pday',
            'results_line', 'run_format4']
-__version__ = '0.2.0'
+__version__ = '0.2.1'

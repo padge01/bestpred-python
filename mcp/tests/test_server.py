@@ -108,3 +108,30 @@ async def test_hosted_reads_no_files_and_returns_the_table():
     assert 'path' not in tools['herd_lactations'].input_schema['properties']
     assert tools['herd_lactations'].annotations.read_only_hint is True
     assert got['table_csv'].splitlines()[0].startswith('cow,parity,fresh')
+
+
+def test_the_hosted_service_has_its_pages(monkeypatch):
+    from starlette.testclient import TestClient
+
+    from bestpred_mcp.hosted import hosted_app
+
+    monkeypatch.delenv('OPENAI_APPS_CHALLENGE', raising=False)
+    with TestClient(hosted_app()) as web:
+        assert web.get('/').status_code == 200 and 'uvx bestpred-mcp' in web.get('/').text
+        assert 'not written to disk' in web.get('/privacy').text
+        assert 'herd_lactations' in web.get('/llms.txt').text
+        assert web.get('/.well-known/openai-apps-challenge').status_code == 404
+    monkeypatch.setenv('OPENAI_APPS_CHALLENGE', 'token-123')
+    with TestClient(hosted_app()) as web:
+        assert web.get('/.well-known/openai-apps-challenge').text == 'token-123'
+
+
+def test_the_hosted_service_refuses_an_oversized_call():
+    from starlette.testclient import TestClient
+
+    from bestpred_mcp.hosted import hosted_app
+
+    with TestClient(hosted_app()) as web:
+        r = web.post('/mcp', content=b'x' * (6 * 1024 * 1024),
+                     headers={'content-type': 'application/json', 'accept': 'application/json, text/event-stream'})
+    assert r.status_code == 413

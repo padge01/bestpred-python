@@ -2,7 +2,7 @@
   "mcpServers": {
     "bestpred": {
       "command": "uvx",
-      "args": ["bestpred-mcp"]
+      "args": ["bestpred-mcp==0.2.0"]
     }
   }
 }

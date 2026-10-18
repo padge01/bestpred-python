@@ -41,10 +41,27 @@ monthly from daily weights, compared with the true daily total.
 
 Method, data, table and scripts: [validation/](validation/).
 
+## For AI agents
+
+An agent can't work out a lactation record in its head, but it can run this. `bestpred-mcp` puts best prediction
+behind four tools any agent can call (Claude, ChatGPT and Codex, Cursor, VS Code, Gemini CLI):
+
+```bash
+uvx bestpred-mcp
+```
+
+- **Claude Code:** `claude mcp add bestpred -- uvx bestpred-mcp`, or the plugin with its skill:
+  `claude plugin marketplace add padge01/bestpred-python` then `claude plugin install bestpred@bestpred`
+- **Claude Desktop, Cursor, Gemini CLI:** `{ "mcpServers": { "bestpred": { "command": "uvx", "args": ["bestpred-mcp"] } } }`
+- **Codex** (`~/.codex/config.toml`): `[mcp_servers.bestpred]` with `command = "uvx"` and `args = ["bestpred-mcp"]`
+
+Then: "Work out 305-day milk for every cow in `tests.csv`." The tools take a herd's test-day export (DHI or DairyComp
+columns), one cow's test days, a cow's expected daily curve, and USDA's age factors. Details in [mcp/](mcp/).
+
 ## Install
 
 ```bash
-pip install git+https://github.com/padge01/bestpred-python
+pip install bestpred
 ```
 
 Python 3.10 or later, NumPy only.

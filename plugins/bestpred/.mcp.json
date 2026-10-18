@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "bestpred": {
+      "command": "uvx",
+      "args": ["bestpred-mcp"]
+    }
+  }
+}

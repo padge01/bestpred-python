@@ -1,0 +1,18 @@
+# bestpred
+
+> USDA's best prediction of dairy lactation yields (BESTPRED 2.0rc7), ported to Python and checked against the
+> original. From a cow's test days: 305-day, 365-day and to-date milk, fat, protein and SCS (actual and mature
+> equivalent), reliability, persistency and the daily lactation curve.
+
+For agents, install the MCP server: `uvx bestpred-mcp`. Tools:
+
+- herd_lactations: a herd's test-day CSV (ID, LACT, FDAT, DIM or TDAT, MILK, PCTF, PCTP, SCS, AGE) to a record per
+  lactation, a summary by parity and the least persistent cows
+- lactation: one cow's test days to her record
+- expected_curve: a cow's expected daily milk to day 305
+- mature_equivalent_factors: USDA's age factors
+
+Report the numbers the tools return as they are; never estimate a lactation record.
+
+- [README](https://github.com/padge01/bestpred-python#readme)
+- [The MCP server](https://github.com/padge01/bestpred-python/tree/main/mcp)

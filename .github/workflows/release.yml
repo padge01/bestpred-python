@@ -1,0 +1,23 @@
+# On a GitHub release: test, build bestpred and bestpred-mcp, and publish both to PyPI by trusted publishing (no token
+# stored here). PyPI must list this repository, this workflow and the "pypi" environment as a trusted publisher for
+# each project first.
+name: release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --all-packages && uv pip install pytest anyio
+      - run: uv run --no-sync pytest -q && uv run --no-sync pytest -q mcp/tests
+      - run: uv build --all-packages -o dist
+      - uses: pypa/gh-action-pypi-publish@release/v1

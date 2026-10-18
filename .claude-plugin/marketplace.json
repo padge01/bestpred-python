@@ -1,0 +1,14 @@
+{
+  "name": "bestpred",
+  "description": "USDA's best prediction of dairy lactation yields, for Claude Code",
+  "owner": {
+    "name": "Pádraig Lucey"
+  },
+  "plugins": [
+    {
+      "name": "bestpred",
+      "source": "./plugins/bestpred",
+      "description": "305-day and mature-equivalent milk, reliability and persistency from test days, by USDA's best prediction method"
+    }
+  ]
+}

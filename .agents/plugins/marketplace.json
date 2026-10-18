@@ -1,0 +1,20 @@
+{
+  "name": "bestpred",
+  "interface": {
+    "displayName": "BESTPRED"
+  },
+  "plugins": [
+    {
+      "name": "bestpred",
+      "source": {
+        "source": "local",
+        "path": "./plugins/bestpred"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education & Research"
+    }
+  ]
+}

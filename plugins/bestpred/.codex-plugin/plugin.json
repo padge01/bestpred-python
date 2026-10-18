@@ -1,0 +1,28 @@
+{
+  "name": "bestpred",
+  "version": "0.2.0",
+  "description": "USDA's best prediction of dairy lactation yields (BESTPRED): 305-day and mature-equivalent milk, fat and protein, reliability and persistency from a cow's or a herd's test days.",
+  "author": {
+    "name": "Pádraig Lucey"
+  },
+  "homepage": "https://github.com/padge01/bestpred-python",
+  "repository": "https://github.com/padge01/bestpred-python",
+  "license": "Apache-2.0",
+  "keywords": ["dairy", "lactation", "305-day", "mature equivalent", "dhi", "best prediction", "usda"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "BESTPRED",
+    "shortDescription": "Lactation records from test days",
+    "longDescription": "USDA's best prediction of dairy lactation yields, run on your computer: 305-day and mature-equivalent milk, fat and protein, reliability and persistency from a herd's DHI or DairyComp test days, or one cow's. Codex runs USDA's method instead of estimating the numbers.",
+    "developerName": "Pádraig Lucey",
+    "category": "Education & Research",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/padge01/bestpred-python",
+    "defaultPrompt": [
+      "Work out 305-day milk for every cow in tests.csv",
+      "Which cows in this herd are the least persistent?",
+      "What is this cow's mature-equivalent 305-day milk from her test days?"
+    ]
+  }
+}

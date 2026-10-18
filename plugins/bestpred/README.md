@@ -1,7 +1,7 @@
 # bestpred
 
 USDA's best prediction of dairy lactation yields (BESTPRED 2.0rc7, ported to Python and checked against USDA's own
-program), for Claude. Ask for 305-day milk, mature equivalent, reliability or persistency from a herd's test days, and
+program), for Claude and Codex. Ask for 305-day milk, mature equivalent, reliability or persistency from a herd's test days, and
 Claude runs the method USDA uses for official lactation records instead of estimating the numbers itself.
 
 ## What it adds

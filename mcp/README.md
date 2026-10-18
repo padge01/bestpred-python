@@ -23,7 +23,9 @@ uvx bestpred-mcp
   ```
 
 - **VS Code** (`.vscode/mcp.json`): `{ "servers": { "bestpred": { "command": "uvx", "args": ["bestpred-mcp"] } } }`
-- **Codex** (`~/.codex/config.toml`):
+- **Codex plugin** (with the skill): `codex plugin marketplace add padge01/bestpred-python`, then install BESTPRED from
+  the Plugins tab.
+- **Codex, the server alone** (`~/.codex/config.toml`):
 
   ```toml
   [mcp_servers.bestpred]

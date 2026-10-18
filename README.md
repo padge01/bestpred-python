@@ -53,7 +53,9 @@ uvx bestpred-mcp
 - **Claude Code:** `claude mcp add bestpred -- uvx bestpred-mcp`, or the plugin with its skill:
   `claude plugin marketplace add padge01/bestpred-python` then `claude plugin install bestpred@bestpred`
 - **Claude Desktop, Cursor, Gemini CLI:** `{ "mcpServers": { "bestpred": { "command": "uvx", "args": ["bestpred-mcp"] } } }`
-- **Codex** (`~/.codex/config.toml`): `[mcp_servers.bestpred]` with `command = "uvx"` and `args = ["bestpred-mcp"]`
+- **Codex:** the plugin with its skill: `codex plugin marketplace add padge01/bestpred-python`, then install BESTPRED
+  from the app's Plugins tab (or `codex plugin add bestpred@bestpred`); or the server alone in `~/.codex/config.toml`:
+  `[mcp_servers.bestpred]` with `command = "uvx"` and `args = ["bestpred-mcp"]`
 
 Then: "Work out 305-day milk for every cow in `tests.csv`." The tools take a herd's test-day export (DHI or DairyComp
 columns), one cow's test days, a cow's expected daily curve, and USDA's age factors. Details in [mcp/](mcp/).

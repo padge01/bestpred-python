@@ -51,9 +51,7 @@
             {
               "description": "A whole herd's test days to a record for every cow",
               "prompt": "These are my herd's test days from California. Work out every cow's 305-day milk and mature equivalent, show me the median by lactation, and tell me which cows are least persistent.",
-              "tools_triggered": [
-                "herd_lactations"
-              ],
+              "tools_triggered": "herd_lactations",
               "expected_behavior": "Calls herd_lactations once with the attached CSV and state CA. Reports 150 lactations, none skipped; median 305-day milk about 25,356 lb (first lactation), 28,154 lb (second) and 26,790 lb (third and later); cow 0038 as the least persistent. Numbers are reported as returned, not estimated.",
               "file_attachment_urls": [
                 "https://raw.githubusercontent.com/padge01/bestpred-python/main/examples/herd_tests.csv"
@@ -62,33 +60,25 @@
             {
               "description": "One cow's record from four test days typed in the chat",
               "prompt": "A second-lactation Holstein calved 1 March 2026. Her tests: day 12, 78 lb milk, 4.4% fat, 3.2% protein; day 43, 96.5 lb, 3.7%, 2.9%; day 71, 99 lb, 3.5%, 3.0%; day 104, 94.2 lb, 3.6%, 3.1%. What will her 305-day milk, fat and protein be, and how reliable is that?",
-              "tools_triggered": [
-                "lactation"
-              ],
+              "tools_triggered": "lactation",
               "expected_behavior": "Calls lactation with the four test days, parity 2, breed Holstein and the calving date. Reports projected 305-day milk, fat and protein in pounds and the reliability, as returned by the tool. Expected: about 24,917 lb milk, 936 lb fat, 788 lb protein, reliability 80%."
             },
             {
               "description": "A cow's expected daily milk, to compare with what she gives",
               "prompt": "A first-lactation Holstein calved 1 May 2026 and gave 70 lb on day 30 and 82 lb on day 60. What should she be giving at day 150 and day 250?",
-              "tools_triggered": [
-                "expected_curve"
-              ],
+              "tools_triggered": "expected_curve",
               "expected_behavior": "Calls expected_curve with the two tests and parity 1. Reports her expected daily milk at about day 150 and day 250 from the returned curve."
             },
             {
               "description": "USDA's mature-equivalent age factors",
               "prompt": "What are USDA's mature-equivalent factors for a Holstein that calved at 24 months in California in March 2026, first lactation?",
-              "tools_triggered": [
-                "mature_equivalent_factors"
-              ],
+              "tools_triggered": "mature_equivalent_factors",
               "expected_behavior": "Calls mature_equivalent_factors with breed Holstein, age 24 months, state CA, calving month 3, parity 1. Reports the milk, fat and protein factors as returned. Expected: milk 1.2712, fat 1.2502, protein 1.2519."
             },
             {
               "description": "Mature equivalent for one cow when her age and state are given",
               "prompt": "A Holstein in Wisconsin, 26 months old at calving, first lactation, calved 10 January 2026, tests: day 20, 65 lb; day 50, 78 lb; day 80, 80 lb. What is her mature-equivalent 305-day milk?",
-              "tools_triggered": [
-                "lactation"
-              ],
+              "tools_triggered": "lactation",
               "expected_behavior": "Calls lactation with the three tests, parity 1, age 26 months and state WI. Reports the mature-equivalent 305-day milk as returned. Expected: 305-day milk about 21,579 lb actual, with its mature equivalent."
             }
           ],

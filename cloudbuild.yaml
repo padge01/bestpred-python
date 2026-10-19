@@ -1,0 +1,7 @@
+# Builds the hosted service's image (mcp/Dockerfile) for Cloud Run.
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-f', 'mcp/Dockerfile', '-t', '$_IMAGE', '.']
+images: ['$_IMAGE']
+substitutions:
+  _IMAGE: us-west1-docker.pkg.dev/dairydatascience/images/bestpred-mcp:latest

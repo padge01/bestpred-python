@@ -1,23 +1,53 @@
-# On a GitHub release: test, build bestpred and bestpred-mcp, and publish both to PyPI by trusted publishing (no token
-# stored here). PyPI must list this repository, this workflow and the "pypi" environment as a trusted publisher for
-# each project first.
+# On a GitHub release (or run by hand): test, build bestpred and bestpred-mcp, and publish each to PyPI by trusted
+# publishing (no token stored here). PyPI allows one pending publisher per repository, workflow and environment, so each
+# package publishes from its own environment: "pypi" for bestpred, "pypi-mcp" for bestpred-mcp.
 name: release
 
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-    environment: pypi
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --all-packages && uv pip install pytest anyio
       - run: uv run --no-sync pytest -q && uv run --no-sync pytest -q mcp/tests
-      - run: uv build --all-packages -o dist
+      - run: uv build --package bestpred -o dist/bestpred && uv build --package bestpred-mcp -o dist/bestpred-mcp
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-bestpred:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
       - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/bestpred/
+
+  publish-bestpred-mcp:
+    needs: publish-bestpred
+    runs-on: ubuntu-latest
+    environment: pypi-mcp
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/bestpred-mcp/

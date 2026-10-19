@@ -119,6 +119,7 @@ def test_the_hosted_service_has_its_pages(monkeypatch):
     with TestClient(hosted_app()) as web:
         assert web.get('/').status_code == 200 and 'uvx bestpred-mcp' in web.get('/').text
         assert 'not written to disk' in web.get('/privacy').text
+        assert 'not official USDA' in web.get('/terms').text
         assert 'herd_lactations' in web.get('/llms.txt').text
         assert web.get('/.well-known/openai-apps-challenge').status_code == 404
     monkeypatch.setenv('OPENAI_APPS_CHALLENGE', 'token-123')

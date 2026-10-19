@@ -28,7 +28,7 @@ persistency from a cow's or a herd's test days.</p>
 <p>MCP endpoint: <code>/mcp</code> (streamable HTTP, no sign-in). Tools: <code>herd_lactations</code>,
 <code>lactation</code>, <code>expected_curve</code>, <code>mature_equivalent_factors</code>.</p>
 <p>To keep your test days on your own computer, run it there instead: <code>uvx bestpred-mcp</code>.</p>
-<p><a href="/privacy">Privacy</a> · <a href="{SOURCE}">Source and install lines</a> · <a href="{ISSUES}">Support</a>
+<p><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="{SOURCE}">Source and install lines</a> · <a href="{ISSUES}">Support</a>
 · version {__version__}</p></html>"""
 
 PRIVACY = f"""Privacy: BESTPRED for agents (hosted)
@@ -49,6 +49,19 @@ Limits: at most {HOSTED_MAX_LACTATIONS:,} lactations and 5 MB a call.
 To keep your data on your own computer entirely, run the same tools locally: uvx bestpred-mcp
 
 Contact: {ISSUES}
+"""
+
+TERMS = f"""Terms of use: BESTPRED for agents (hosted)
+
+The service is free, with no sign-in, provided as is, with no warranty and no promise that it stays available.
+
+The numbers come from USDA's best prediction method (BESTPRED 2.0rc7) as ported to Python and checked against USDA's own
+program. They are estimates for herd management and research, not official USDA or DHI records. This service is not a
+product of, or endorsed by, USDA.
+
+Use it fairly: at most {HOSTED_MAX_LACTATIONS:,} lactations and 5 MB a call; no attempts to overload or break it.
+
+The code is Apache-2.0: {SOURCE}. Privacy: /privacy. Contact: {ISSUES}
 """
 
 LLMS = """# BESTPRED for agents (hosted)
@@ -77,6 +90,10 @@ def hosted_app(allowed_hosts: list[str] | None = None) -> Starlette:
     @mcp.custom_route('/privacy', methods=['GET'])
     async def privacy(_: Request) -> Response:
         return PlainTextResponse(PRIVACY)
+
+    @mcp.custom_route('/terms', methods=['GET'])
+    async def terms(_: Request) -> Response:
+        return PlainTextResponse(TERMS)
 
     @mcp.custom_route('/llms.txt', methods=['GET'])
     async def llms(_: Request) -> Response:

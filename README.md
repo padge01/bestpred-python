@@ -14,6 +14,8 @@
 
 **[Connect in Claude →](https://claude.ai/directory/bestpred)**
 
+<a href="https://ko-fi.com/padge01"><img src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" alt="Buy Me a Coffee at Ko-fi" height="36"></a>
+
 </div>
 
 ---
@@ -166,6 +168,11 @@ Found while porting:
   92:1796–1810.
 - Cole, J.B., and P.M. VanRaden. 2008. A manual for use of BESTPRED: a program for estimation of lactation yield and
   persistency using best prediction. USDA-ARS-AGIL.
+
+## Support
+
+BESTPRED is free and open source. If it saves you time and you would like to support continued development and
+testing, you can leave an optional tip on [Ko-fi](https://ko-fi.com/padge01).
 
 ## License
 

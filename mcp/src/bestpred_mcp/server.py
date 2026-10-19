@@ -70,7 +70,7 @@ def build_server(hosted: bool = False) -> MCPServer:
     mcp = MCPServer('bestpred', title='BESTPRED lactation records', instructions=INSTRUCTIONS, version=__version__,
                     website_url='https://github.com/padge01/bestpred-python')
 
-    @mcp.tool(title='One cow\'s lactation record', annotations=ToolAnnotations(**READ_ONLY),
+    @mcp.tool(title='One cow\'s lactation record', annotations=ToolAnnotations(title='One cow\'s lactation record', **READ_ONLY),
               description='Best prediction for one cow from her test days: 305-day and 365-day milk, fat and protein '
                           '(and mature equivalent when age_months is given), reliability, persistency and data '
                           'collection rating.' + REPORT)
@@ -88,7 +88,7 @@ def build_server(hosted: bool = False) -> MCPServer:
             out['note'] = 'Mature equivalent not given: it needs age_months and state.'
         return out
 
-    @mcp.tool(title='A cow\'s expected daily milk', annotations=ToolAnnotations(**READ_ONLY),
+    @mcp.tool(title='A cow\'s expected daily milk', annotations=ToolAnnotations(title='A cow\'s expected daily milk', **READ_ONLY),
               description='A cow\'s expected daily milk to day 305 from her test days (her herd curve plus her own '
                           'deviation), one point every `every` days, to compare with what she is giving.' + REPORT)
     def expected_curve(tests: list[MilkTest], parity: int, fresh: str, breed: str = 'H', every: int = 7,
@@ -100,7 +100,7 @@ def build_server(hosted: bool = False) -> MCPServer:
             raise ToolError(str(e)) from e
         return {'units': units, 'points': curve(res, every=max(1, min(int(every), 30)))}
 
-    @mcp.tool(title='Mature-equivalent factors', annotations=ToolAnnotations(**READ_ONLY),
+    @mcp.tool(title='Mature-equivalent factors', annotations=ToolAnnotations(title='Mature-equivalent factors', **READ_ONLY),
               description="USDA's factors that turn a cow's actual 305-day milk, fat and protein into mature "
                           'equivalent, for her breed, age at calving, calving month, parity, state and previous days '
                           'open.' + REPORT)
@@ -136,7 +136,7 @@ def build_server(hosted: bool = False) -> MCPServer:
         return rows, out
 
     if hosted:
-        @mcp.tool(title='A herd\'s lactation records', annotations=ToolAnnotations(**READ_ONLY),
+        @mcp.tool(title='A herd\'s lactation records', annotations=ToolAnnotations(title='A herd\'s lactation records', **READ_ONLY),
                   description=herd_doc + '; with the full table when the herd is small.' + REPORT)
         def herd_lactations(csv_text: str, state: str = '', herd_milk: HerdAverage = 0, herd_fat: HerdAverage = 0,
                             herd_protein: HerdAverage = 0, herd_scs: HerdAverage = 0, units: str = 'lb') -> dict:
@@ -155,7 +155,7 @@ def build_server(hosted: bool = False) -> MCPServer:
                 out['table'] = f'{len(rows):,} rows: too many to send back here. Installed locally, it writes a file.'
             return out
     else:
-        @mcp.tool(title='A herd\'s lactation records', annotations=ToolAnnotations(**WRITES_NEW_FILE),
+        @mcp.tool(title='A herd\'s lactation records', annotations=ToolAnnotations(title='A herd\'s lactation records', **WRITES_NEW_FILE),
                   description=herd_doc + '; the full table is written to a new file beside the input (or `out_path`).'
                               + ' Give `path` to a CSV on this computer, or `csv_text`.' + REPORT)
         def herd_lactations(path: str = '', csv_text: str = '', out_path: str = '', state: str = '',

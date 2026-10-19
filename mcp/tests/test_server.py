@@ -135,3 +135,10 @@ def test_the_hosted_service_refuses_an_oversized_call():
         r = web.post('/mcp', content=b'x' * (6 * 1024 * 1024),
                      headers={'content-type': 'application/json', 'accept': 'application/json, text/event-stream'})
     assert r.status_code == 413
+
+
+async def test_every_tool_has_an_annotation_title():
+    for hosted in (False, True):
+        async with Client(build_server(hosted=hosted)) as c:
+            for tool in (await c.list_tools()).tools:
+                assert tool.annotations.title == tool.title, tool.name

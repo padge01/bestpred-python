@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "bestpred": {
-      "command": "uvx",
-      "args": ["bestpred-mcp==0.2.1"]
+      "type": "http",
+      "url": "https://bestpred.dairydatascience.com/mcp"
     }
   }
 }

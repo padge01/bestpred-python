@@ -19,5 +19,9 @@
     "USDA",
     "nutrition"
   ],
-  "repository": "https://github.com/padge01/bestpred-python"
+  "repository": "https://github.com/padge01/bestpred-python",
+  "displayName": "BESTPRED",
+  "privacyPolicyUrl": "https://bestpred.dairydatascience.com/privacy",
+  "supportUrl": "https://github.com/padge01/bestpred-python/issues",
+  "documentationUrl": "https://github.com/padge01/bestpred-python/tree/main/mcp#readme"
 }

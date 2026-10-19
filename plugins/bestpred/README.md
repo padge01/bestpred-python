@@ -13,13 +13,14 @@ Claude runs the method USDA uses for official lactation records instead of estim
 
 ## What it runs, reads and sends
 
-- It runs one program on your computer: `uvx bestpred-mcp==0.2.1`. The first time, uv downloads the server and its
-  dependencies (`bestpred`, NumPy, the MCP SDK) from PyPI; `uv.lock` in this folder records their exact versions and
-  checksums. It needs [uv](https://docs.astral.sh/uv/).
-- It reads only the test-day file you point it at, and writes its table to a new file beside it. It never overwrites a
-  file.
-- It sends nothing anywhere itself: no network calls, no telemetry. What Claude reads back from the tools (the
-  summary) goes to Anthropic as part of your conversation, like anything else in a chat.
+- In Claude, it connects to the hosted BESTPRED service at `https://bestpred.dairydatascience.com/mcp`: no install,
+  and it works in Claude Code, Cowork and the Claude apps. The test days Claude sends with a call go there, are used only
+  to compute that answer, and are not stored or logged (privacy policy: https://bestpred.dairydatascience.com/privacy).
+- In Codex, it runs the server on your own computer instead (`uvx bestpred-mcp==0.2.1`, which needs
+  [uv](https://docs.astral.sh/uv/)); your files stay there.
+- To keep everything on your own computer in Claude too, skip the plugin and add the server yourself:
+  `claude mcp add bestpred -- uvx bestpred-mcp`.
+- What Claude reads back from the tools goes to Anthropic as part of your conversation, like anything else in a chat.
 
 ## Source and licence
 

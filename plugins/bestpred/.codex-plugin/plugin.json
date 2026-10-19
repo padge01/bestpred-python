@@ -16,6 +16,7 @@
     "shortDescription": "Lactation records from test days",
     "longDescription": "USDA's best prediction of dairy lactation yields, run on your computer: 305-day and mature-equivalent milk, fat and protein, reliability and persistency from a herd's DHI or DairyComp test days, or one cow's. Codex runs USDA's method instead of estimating the numbers.",
     "developerName": "Pádraig Lucey",
+    "logo": "./.claude-plugin/icon.png",
     "category": "Education & Research",
     "capabilities": ["Read", "Write"],
     "websiteURL": "https://github.com/padge01/bestpred-python",

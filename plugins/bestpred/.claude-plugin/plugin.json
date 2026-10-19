@@ -6,5 +6,18 @@
     "name": "Pádraig Lucey"
   },
   "homepage": "https://github.com/padge01/bestpred-python",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "keywords": [
+    "dairy",
+    "lactation",
+    "305-day milk",
+    "mature equivalent",
+    "persistency",
+    "DHI",
+    "DairyComp",
+    "best prediction",
+    "USDA",
+    "nutrition"
+  ],
+  "repository": "https://github.com/padge01/bestpred-python"
 }

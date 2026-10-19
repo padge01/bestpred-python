@@ -13,5 +13,11 @@
         "type": "stdio"
       }
     }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://bestpred.dairydatascience.com/mcp"
+    }
   ]
 }

@@ -53,7 +53,8 @@ Pounds by default; pass `units: "kg"` for kilograms. With no herd average given,
 Run this way, the server runs on your computer: your files are read there and the table is written there. What your
 agent shows the AI model (the summary it reads back) goes to that model's company, as everything in a chat does.
 
-`bestpred-mcp --http` serves the same tools over HTTP for hosting. Hosted, it reads no files, keeps nothing, and takes
+**Hosted, nothing to install:** `https://bestpred.dairydatascience.com/mcp` (add it as a custom connector in Claude,
+or any MCP client). `bestpred-mcp --http` serves the same tools over HTTP for hosting your own. Hosted, it reads no files, keeps nothing, and takes
 at most 5,000 lactations a call.
 
 ## Licence

@@ -13,9 +13,9 @@ Claude runs the method USDA uses for official lactation records instead of estim
 
 ## What it runs, reads and sends
 
-- It runs one program on your computer: `uvx bestpred-mcp==0.2.1`, which downloads the `bestpred-mcp` and `bestpred`
-  Python packages (and their dependencies, NumPy and the MCP SDK) from PyPI the first time. It needs
-  [uv](https://docs.astral.sh/uv/).
+- It runs one program on your computer: the `bestpred-mcp` server, with `uv run --locked` (in Codex, `uvx
+  bestpred-mcp==0.2.1`). The first time, uv downloads it and its dependencies (`bestpred`, NumPy, the MCP SDK) from
+  PyPI, at the exact versions and checksums in this folder's `uv.lock`. It needs [uv](https://docs.astral.sh/uv/).
 - It reads only the test-day file you point it at, and writes its table to a new file beside it. It never overwrites a
   file.
 - It sends nothing anywhere itself: no network calls, no telemetry. What Claude reads back from the tools (the

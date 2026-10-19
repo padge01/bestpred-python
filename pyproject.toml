@@ -39,3 +39,4 @@ Original = "https://github.com/wintermind/bestpred"
 
 [tool.uv.workspace]
 members = ["mcp"]
+exclude = ["plugins/*"]

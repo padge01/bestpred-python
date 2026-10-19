@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "bestpred": {
-      "command": "uvx",
-      "args": ["bestpred-mcp==0.2.1"]
+      "command": "uv",
+      "args": ["run", "--locked", "--project", "${CLAUDE_PLUGIN_ROOT}", "bestpred-mcp"]
     }
   }
 }

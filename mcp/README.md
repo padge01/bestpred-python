@@ -9,9 +9,15 @@ with this it runs the method USDA uses for official records, and reports the num
 It is an MCP server. MCP is the open standard agents use for tools, so the same server works in Claude, ChatGPT and
 Codex, Cursor, VS Code and Gemini CLI.
 
-## Install
+## Use it
 
-You need [uv](https://docs.astral.sh/uv/) (it runs the server; nothing else to install).
+**Nothing to install:** in Claude, open [claude.ai/directory/bestpred](https://claude.ai/directory/bestpred) and click
+**Connect**. In any other MCP app, add `https://bestpred.dairydatascience.com/mcp`.
+
+**Claude Code or Cowork, with the skill:** install the BESTPRED plugin from Claude's plugin directory, or
+`claude plugin marketplace add padge01/bestpred-python` then `claude plugin install bestpred@bestpred`.
+
+**On your own computer**, so your files never leave it: you need [uv](https://docs.astral.sh/uv/) (it runs the server; nothing else to install).
 
 ```bash
 uvx bestpred-mcp

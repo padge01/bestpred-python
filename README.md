@@ -1,76 +1,74 @@
-# bestpred
+# BESTPRED
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23425506.svg)](https://doi.org/10.5281/zenodo.23425506)
+[![PyPI](https://img.shields.io/pypi/v/bestpred-mcp?label=bestpred-mcp)](https://pypi.org/project/bestpred-mcp/)
 
-Python translation of the USDA best prediction of lactation yields (BESTPRED).
+USDA's best prediction of dairy lactation records, in Python, and as a tool AI agents can use.
 
-Takes a cow's test days and returns 305-day, 365-day and to-date milk, fat, protein and SCS (actual and mature
-equivalent), persistency, reliabilities, the data collection rating, and the cow's daily lactation curve.
+Give it a cow's test days and it returns 305-day, 365-day and to-date milk, fat, protein and SCS (actual and mature
+equivalent), reliability, persistency, the data collection rating and her daily lactation curve. It is a port of
+USDA-AGIL's BESTPRED 2.0rc7, the method behind official US lactation records since 1998, and gives the same numbers
+(checked below).
 
-Best prediction is the method USDA has used for official lactation records since 1998 (VanRaden, 1997; Cole et al.,
-2009). The original is USDA-AGIL's public-domain Fortran and C,
-[BESTPRED 2.0rc7](https://github.com/wintermind/bestpred). This port gives the same numbers.
+## Use it
 
-## How it was checked
+Pick the one that matches where you work.
 
-USDA's code was compiled from source, and both programs ran on the same random lactations: 1 to 15 test days,
-duplicate tests, LER segments, 3X milking, owner-sampler and unusable supervision codes, missing components, all six
-breeds, parities 1 to 9, herd means present and absent.
+**In Claude** (web, desktop app or phone), nothing to install:
+open [claude.ai/directory/bestpred](https://claude.ai/directory/bestpred) and click **Connect**. Then ask, for example:
+"Here are my herd's test days. Work out every cow's 305-day milk and tell me which cows are least persistent."
 
-- **Every output and the full daily curves agree to 1e-9 relative** (typically 1e-12) for 300 lactations under each
-  of 13 settings: the default, single-trait, multi-trait with SCS, the three 3X options, 365-day and 330-day
-  lactations, linear, region, calving-season and region-by-season curves, and kilograms.
-- **Mature-equivalent factors agree bit for bit** (aiplage and adjscs) on 43,200 combinations of breed, state, year,
-  month, parity, previous days open and age base.
-- **USDA's example record** gives the same results line as their program, character for character.
-
-`tests/` holds fixtures from that reference build, so `pytest` runs without a Fortran compiler. To rebuild the
-reference and run the full comparison yourself (needs gcc and gfortran):
+**In Claude Code or Cowork:** install the **BESTPRED** plugin from Claude's plugin directory. It adds the same tools
+plus guidance for Claude. From a terminal instead:
 
 ```bash
-tools/reference.sh /tmp/bestpred-ref
-python tools/compare.py --driver /tmp/bestpred-ref/driver --n 300
+claude plugin marketplace add padge01/bestpred-python
+claude plugin install bestpred@bestpred
 ```
 
-## Tested against daily meter weights
+**In any other AI app that takes an MCP server** (ChatGPT, Cursor, VS Code and others), add this address:
 
-600 synthetic lactations shaped like a California Holstein herd. 305-day yield projected from test days drawn
-monthly from daily weights, compared with the true daily total.
+```
+https://bestpred.dairydatascience.com/mcp
+```
 
-![Mean absolute error of the 305-day projection by tests up to 60, 120 and 200 days in milk and all tests: best prediction 7.9, 5.4, 3.0, 1.8%; herd-curve ratio 8.5, 6.0, 3.6, 2.0%; test intervals plus herd curve 8.3, 5.5, 3.0, 1.8%](validation/results/error_by_stage.png)
-
-Method, data, table and scripts: [validation/](validation/).
-
-## For AI agents
-
-An agent can't work out a lactation record in its head, but it can run this. `bestpred-mcp` puts best prediction
-behind four tools any agent can call (Claude, ChatGPT and Codex, Cursor, VS Code, Gemini CLI):
+**In Codex:**
 
 ```bash
-uvx bestpred-mcp
+codex plugin marketplace add padge01/bestpred-python
 ```
 
-- **Claude Code:** `claude mcp add bestpred -- uvx bestpred-mcp`, or the plugin with its skill:
-  `claude plugin marketplace add padge01/bestpred-python` then `claude plugin install bestpred@bestpred`
-- **Claude Desktop, Cursor, Gemini CLI:** `{ "mcpServers": { "bestpred": { "command": "uvx", "args": ["bestpred-mcp"] } } }`
-- **Codex:** the plugin with its skill: `codex plugin marketplace add padge01/bestpred-python`, then install BESTPRED
-  from the app's Plugins tab (or `codex plugin add bestpred@bestpred`); or the server alone in `~/.codex/config.toml`:
-  `[mcp_servers.bestpred]` with `command = "uvx"` and `args = ["bestpred-mcp"]`
+then install BESTPRED from the Plugins tab.
 
-Then: "Work out 305-day milk for every cow in `tests.csv`." The tools take a herd's test-day export (DHI or DairyComp
-columns), one cow's test days, a cow's expected daily curve, and USDA's age factors. Details in [mcp/](mcp/).
+**On your own computer**, so your test days never leave it: install [uv](https://docs.astral.sh/uv/), then point your
+AI app at `uvx bestpred-mcp`. Setup lines for each app are in [mcp/](mcp/).
 
-## Install
+**In your own Python code:**
 
 ```bash
 pip install bestpred
 ```
 
-Python 3.10 or later, NumPy only.
+and see [The Python library](#the-python-library) below.
 
-## Use it
+### What the AI tools do
 
-From Python, with test days as a DHI test or a parlor export gives them:
+| Tool | What it does |
+|---|---|
+| A herd's lactation records | A herd's test-day export (DHI or DairyComp columns) to a record for every lactation, a summary by parity and the least persistent cows |
+| One cow's lactation record | 305-day and 365-day milk, fat and protein, mature equivalent when her age and state are known, reliability and persistency |
+| A cow's expected daily milk | Her expected milk to day 305, to compare with what she is giving |
+| Mature-equivalent factors | USDA's age factors for a breed, age at calving, month, parity, state and previous days open |
+
+The hosted service keeps nothing: [privacy](https://bestpred.dairydatascience.com/privacy).
+
+## The Python library
+
+```bash
+pip install bestpred
+```
+
+Python 3.10 or later, NumPy only. With test days as a DHI test or a parlor export gives them:
 
 ```python
 from bestpred import TestDay, bestpred
@@ -108,6 +106,36 @@ USDA Format 4 records run straight from the command line and give the program's 
 bestpred records.dat
 bestpred records.dat --json
 ```
+
+## How it was checked
+
+USDA's code was compiled from source, and both programs ran on the same random lactations: 1 to 15 test days,
+duplicate tests, LER segments, 3X milking, owner-sampler and unusable supervision codes, missing components, all six
+breeds, parities 1 to 9, herd means present and absent.
+
+- **Every output and the full daily curves agree to 1e-9 relative** (typically 1e-12) for 300 lactations under each
+  of 13 settings: the default, single-trait, multi-trait with SCS, the three 3X options, 365-day and 330-day
+  lactations, linear, region, calving-season and region-by-season curves, and kilograms.
+- **Mature-equivalent factors agree bit for bit** (aiplage and adjscs) on 43,200 combinations of breed, state, year,
+  month, parity, previous days open and age base.
+- **USDA's example record** gives the same results line as their program, character for character.
+
+`tests/` holds fixtures from that reference build, so `pytest` runs without a Fortran compiler. To rebuild the
+reference and run the full comparison yourself (needs gcc and gfortran):
+
+```bash
+tools/reference.sh /tmp/bestpred-ref
+python tools/compare.py --driver /tmp/bestpred-ref/driver --n 300
+```
+
+## Tested against daily meter weights
+
+600 synthetic lactations shaped like a California Holstein herd. 305-day yield projected from test days drawn
+monthly from daily weights, compared with the true daily total.
+
+![Mean absolute error of the 305-day projection by tests up to 60, 120 and 200 days in milk and all tests: best prediction 7.9, 5.4, 3.0, 1.8%; herd-curve ratio 8.5, 6.0, 3.6, 2.0%; test intervals plus herd curve 8.3, 5.5, 3.0, 1.8%](validation/results/error_by_stage.png)
+
+Method, data, table and scripts: [validation/](validation/).
 
 ## Things the port keeps from the original
 

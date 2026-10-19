@@ -3,7 +3,7 @@
 name = "bestpred-plugin"
 version = "0.2.1"
 description = "The pinned runtime for the BESTPRED plugin's MCP server."
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = ["bestpred-mcp==0.2.1"]
 
 [tool.uv]

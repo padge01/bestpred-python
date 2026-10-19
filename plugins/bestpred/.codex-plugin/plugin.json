@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "keywords": ["dairy", "lactation", "305-day", "mature equivalent", "dhi", "best prediction", "usda"],
   "skills": "./skills/",
-  "mcpServers": "./.codex.mcp.json",
+  "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "BESTPRED",
     "shortDescription": "Lactation records from test days",
